@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tp 1 Avanzada 2</title>
+    <script src="main.js"></script>
+</head>
+<body>
+
+    <form action="">
+        <div style="margin-top: 15px">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="" id="nombre">
+        </div>
+        
+        <div style="margin-top: 15px">
+            <label for="edad">Edad: </label>
+            <input type="text" name="" id="edad">
+        </div>
+        
+        <div style="margin-top: 15px">
+            <label for="pass">Contraseña: </label>
+            <input type="text" name="" id="pass">
+        </div>
+        
+        <div style="margin-top: 15px" >
+            <label for="email">Email</label>
+            <input type="text" name="" id="email">
+        </div>
+
+        <button onclick="validarFormulario()" style="margin-top: 15px">BOTON</button>
+    </form>
+
+    <h2>Productos</h2>
+    <div id="product">
+        <label for="button1">Computadora</label>
+        <button onclick="addProductToWishList('Computadora')" value="Computadora">Agregar a la lista de deseados</button>
+    </div>
+    
+
+    <div>
+        <label for="button2">Televisor</label>
+        <button onclick="addProductToWishList('Televisor')" value="Televisor">Agregar a la lista de deseados</button>
+    </div>
+    
+    <div>
+        <label for="button3">Telefono</label>
+        <button onclick="addProductToWishList('Telefono')" value="Telefono">Agregar a la lista de deseados</button>
+    </div>
+    
+
+    <h2>Lista de deseados</h2>
+    <ul id="wishList">
+    </ul>
+
+
+    
+</body>
+</html>
