@@ -59,12 +59,38 @@ function validarFormulario(){
     return true;
 }
 
-function addProductToWishList(product){
+var id = 0;
 
+function addProductToWishList(product){
+    
     var listElement = document.createElement("li");
+    listElement.className = "listElement";
     listElement.innerHTML = product;
-    //listElement.addEventListener();
+    var button = document.createElement("button");
+    button.id = id; // 
+    button.innerHTML = "X";
+    button.onclick = function deleteElement(){
+
+        var elements = document.getElementsByClassName("listElement");
+        elements = Array.from(elements);
+        elements.splice(button.id, 1); // hay que volver a meter la lista para que se actualice la paginaº1º
+        console.log(elements);
+        console.log(document.getElementById(button.id));
+        console.log(document.getElementsByClassName("listElement"));
+
+
+}
+    listElement.appendChild(button);
 
     var list = document.getElementById("wishList");
     list.appendChild(listElement);
+    id++; 
+}
+
+
+function existsInList (product){
+    //recorrer la lista y ver si el producto nuevo ya existe ahi y retornar T o F
+    var elements = document.getElementsByClassName("listElement");
+    console.log(elements);
+
 }
