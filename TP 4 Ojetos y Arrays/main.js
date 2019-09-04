@@ -7,22 +7,49 @@ class Product {
     }
 }
 
-class ShoppingLine {
-    constructor(quantity, product) {
-        this.quantity = quantity;
+class ProductLine {
+    constructor(product, quantity) {
         this.product = product;
+        this.quantity = quantity;
     }
 }
 
-var computadora = new Product("Computadora","24.99","Esto es una puta descripcion");
-var televisor = new Product("Televisor","24.99","Descripcion numero dos");
-var telefono = new Product("Telefono","2444","JAJAJAJAJAJAAJAJAJ");
+class ShoppingCart {
+    constructor(){
+        this.productLines = new Array();
+    }
 
-createProduct(computadora);
-createProduct(televisor);
-createProduct(telefono);
+    addProductToCart(product){
+        if(this.productLine.length > 0){
+            productLines.forEach(element => { // pasar a while para no recorrer todo si ya encontre el product
+                if(element.product == product){
+                    element.quantity ++;
+                }
+            });
+        }else{
+            var productL = new ProductLine(product, 1);
+            this.productLines.push()
+        }
 
+        displayCart(); // hacerla 
+    }
+}
+
+var shoppingCart = new ShoppingCart();
+var computer = new Product("Computadora", "24.99", "Esto es una puta descripcion");
+var tv = new Product("Televisor", "24.99", "Descripcion numero dos");
+var smartphone = new Product("Telefono", "2444", "JAJAJAJAJAJAAJAJAJ");
+
+var array = new Array(computer, tv, smartphone);
+//var array = [computer, tv, smartphone]; // otra forma de declarar
+
+array.forEach(product => {
+    createProduct(product);
+});
+
+var i = 0;
 function createProduct(product) {
+
     var div = document.createElement("div");
     div.className = "col-lg-4 col-md-6 mb-4";
 
@@ -33,8 +60,8 @@ function createProduct(product) {
     a.href = "#";
 
     var img = document.createElement("img");
-    img.className="card-img-top";
-    img.src="http://placehold.it/700x400";
+    img.className = "card-img-top";
+    img.src = "http://placehold.it/700x400";
 
     var div3 = document.createElement("div");
     div3.className = "card-body";
@@ -59,18 +86,32 @@ function createProduct(product) {
     var button = document.createElement("button");
     button.innerHTML = "Add";
     button.className = "btn btn-success";
-    button.onclick = function addProductToCart(){
+    button.onclick = function addProductToCart() {
         var cart = document.getElementById("cart");
         var li = document.createElement("li");
         var button = document.createElement("button");
         button.innerHTML = "Quitar";
         //button.onclick = function deleteProduct(){}
-        li.innerHTML = product.name;
         li.className = "list-group-item";
-    
+
+        var strong = document.createElement("strong");
+        strong.className = "product-name";
+        strong.innerHTML = product.name;
+        if(getProductInCartQuantity(product.name)>0){
+
+        } 
+        var p = document.createElement("p");
+        p.id = "quantity-" + i;
+        i++;
+
+        p.innerHTML = getProductInCartQuantity(product.name) + 1;
+
+        li.appendChild(strong);
+        li.appendChild(p);
+
         li.appendChild(button);
         cart.appendChild(li);
-    
+
     } // por ahora product.name
     a.appendChild(img);
     div2.appendChild(a);
@@ -88,5 +129,31 @@ function createProduct(product) {
 
     row.appendChild(div);
 
-    
+}
+
+function displayCart (){
+    // borrar el innerhtml del carrito 
+    // y hacr foreach de las lineas de productos del objeto carrito y mostrar todo 
+
+    shoppingCart.productLines.forEach(element => {
+        
+    });
+}
+
+// corregir todo 
+
+
+
+
+function getProductInCartQuantity(product) {
+    var cartProducts = document.getElementsByClassName("product-name");
+    var quantity = 0;
+    for (var i = 0; i < cartProducts.length; i++) {
+        if (cartProducts[i].innerHTML == product) {
+            i = i-1; // porq sube 1 al entrar al if (no se porq)
+            quantity = document.getElementById("quantity-" + i ).innerHTML;
+            return parseInt(quantity);
+        }
+    }
+    return quantity;
 }
