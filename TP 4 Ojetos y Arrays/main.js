@@ -33,23 +33,21 @@ class ShoppingCart {
             this.productLines.push(productL);
         }
 
-        displayCart(this.productLines); // hacerla 
+        displayCart(this.productLines);
     }
 
     deleteProduct(product){
-        console.log(product);
-        var exists = false;
+
         for (var i = 0; i < this.productLines.length; i++) { // pasar a while para no recorrer todo innecesariamente
             if(this.productLines[i].product == product){
                     this.productLines[i].quantity --;
                     if (this.productLines[i].quantity == 0) {
-                        this.productLines.splice(i,1);
+                        this.productLines.splice(i,1); // a partir de la pos i, eliminar 1
                     }
-                    exists = true;//borrar
                 }
         }
 
-        displayCart(this.productLines); // hacerla
+        displayCart(this.productLines); 
 
     }
 }
@@ -129,8 +127,7 @@ function createProduct(product) {
 }
 
 function displayCart (){
-    // borrar el innerhtml del carrito 
-    // y hacr foreach de las lineas de productos del objeto carrito y mostrar todo 
+    
 
     var cart = document.getElementById("cart");
     console.log(shoppingCart.productLines);
@@ -168,22 +165,4 @@ function displayCart (){
         li.appendChild(button);
         cart.appendChild(li);
     });
-}
-
-// corregir todo 
-
-
-
-//borrar
-function getProductInCartQuantity(product) {
-    var cartProducts = document.getElementsByClassName("product-name");
-    var quantity = 0;
-    for (var i = 0; i < cartProducts.length; i++) {
-        if (cartProducts[i].innerHTML == product) {
-            i = i-1; // porq sube 1 al entrar al if (no se porq)
-            quantity = document.getElementById("quantity-" + i ).innerHTML;
-            return parseInt(quantity);
-        }
-    }
-    return quantity;
 }
