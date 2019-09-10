@@ -19,19 +19,38 @@ class ShoppingCart {
         this.productLines = new Array();
     }
 
-    addProductToCart(product){
-        if(this.productLine.length > 0){
-            productLines.forEach(element => { // pasar a while para no recorrer todo si ya encontre el product
+    addProductToShoppingCart(product){
+        var exists = false;
+            this.productLines.forEach(element => { // pasar a while para no recorrer todo si ya encontre el product
                 if(element.product == product){
                     element.quantity ++;
+                    exists = true;
                 }
             });
-        }else{
+        if (!exists) {
+
             var productL = new ProductLine(product, 1);
-            this.productLines.push()
+            this.productLines.push(productL);
         }
 
-        displayCart(); // hacerla 
+        displayCart(this.productLines); // hacerla 
+    }
+
+    deleteProduct(product){
+        console.log(product);
+        var exists = false;
+        for (var i = 0; i < this.productLines.length; i++) { // pasar a while para no recorrer todo innecesariamente
+            if(this.productLines[i].product == product){
+                    this.productLines[i].quantity --;
+                    if (this.productLines[i].quantity == 0) {
+                        this.productLines.splice(i,1);
+                    }
+                    exists = true;//borrar
+                }
+        }
+
+        displayCart(this.productLines); // hacerla
+
     }
 }
 
@@ -86,33 +105,11 @@ function createProduct(product) {
     var button = document.createElement("button");
     button.innerHTML = "Add";
     button.className = "btn btn-success";
-    button.onclick = function addProductToCart() {
-        var cart = document.getElementById("cart");
-        var li = document.createElement("li");
-        var button = document.createElement("button");
-        button.innerHTML = "Quitar";
-        //button.onclick = function deleteProduct(){}
-        li.className = "list-group-item";
+    button.onclick = function() {
 
-        var strong = document.createElement("strong");
-        strong.className = "product-name";
-        strong.innerHTML = product.name;
-        if(getProductInCartQuantity(product.name)>0){
+        shoppingCart.addProductToShoppingCart(product);
 
-        } 
-        var p = document.createElement("p");
-        p.id = "quantity-" + i;
-        i++;
-
-        p.innerHTML = getProductInCartQuantity(product.name) + 1;
-
-        li.appendChild(strong);
-        li.appendChild(p);
-
-        li.appendChild(button);
-        cart.appendChild(li);
-
-    } // por ahora product.name
+    } 
     a.appendChild(img);
     div2.appendChild(a);
     h4.appendChild(a2);
@@ -135,8 +132,41 @@ function displayCart (){
     // borrar el innerhtml del carrito 
     // y hacr foreach de las lineas de productos del objeto carrito y mostrar todo 
 
+    var cart = document.getElementById("cart");
+    console.log(shoppingCart.productLines);
+    cart.innerHTML = "";
+    var li = document.createElement("li");
+    li.className = "list-group-item"; 
+    li.style = "background-color: #18b639; color: white;"
+    li.innerHTML = "Cart";
+    cart.appendChild(li);
+    
+
     shoppingCart.productLines.forEach(element => {
         
+        var li = document.createElement("li");
+        var button = document.createElement("button");
+        button.innerHTML = "Quitar";
+        button.onclick = function (){
+            shoppingCart.deleteProduct(element.product);
+        }
+        li.className = "list-group-item";
+
+        var strong = document.createElement("strong");
+        strong.className = "product-name";
+        strong.innerHTML = element.product.name;
+
+        var p = document.createElement("p");
+        p.id = "quantity-" + i;
+        i++;
+
+        p.innerHTML = element.quantity;
+
+        li.appendChild(strong);
+        li.appendChild(p);
+
+        li.appendChild(button);
+        cart.appendChild(li);
     });
 }
 
@@ -144,7 +174,7 @@ function displayCart (){
 
 
 
-
+//borrar
 function getProductInCartQuantity(product) {
     var cartProducts = document.getElementsByClassName("product-name");
     var quantity = 0;
