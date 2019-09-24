@@ -71,9 +71,9 @@ class Item {
         this.price = price;
     }
 
-    /*Item.prototype.toString = function(){
-        return "fds";
-    }*/
+    toString(){
+        return "{name: " + this.name + " Price: " + this.price+"}";
+    }
 
 
 }
@@ -94,6 +94,10 @@ class Cart{
         });
         return total;
     }
+
+    toString(){
+        return "Carrito: " + this.items.toString();
+    }
 }
 
 var tv = new Item("tv", 100);
@@ -104,5 +108,37 @@ cart.addItem(tv);
 cart.addItem(pc);
 
 console.log("Total de carrito: " + cart.getTotal());
+console.log("To string: " + cart.toString());
 
-// hacer los toString..
+// ------------ 5 -------------
+function getFormValue() {
+    var name = document.getElementsByName("fname");
+    if(name[0].value == "" || name[0].value == null){
+        alert("nombre vacio");
+        return false;
+    }
+    var last_name = document.getElementsByName("lname");
+    if (last_name[0].value == "" || last_name[0].value == null){
+        alert("apellido vacio");
+        return false;
+    }
+}
+
+// ------- 6 -----------
+function generateTable(){
+    
+    var rows = document.getElementById("rows").value;
+    var columns = document.getElementById("columns").value;
+    var table = document.getElementById("table");
+    for (let index = 0; index < rows; index++) {
+        var row = document.createElement("tr");
+        for (let c = 0; c < columns; c++) {
+            var column = document.createElement("td");
+            column.innerHTML = c;
+            row.appendChild(column);            
+        }
+        table.appendChild(row);
+    }
+}
+
+// ------ 7 -----------

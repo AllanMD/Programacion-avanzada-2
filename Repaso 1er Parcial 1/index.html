@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Repaso parcial 1</title>
 </head>
+
 <body>
     <h1>Repaso 1er Parcial 1</h1>
 
+    <!-- 5 -->
+    <form id="form" onsubmit="getFormValue()">
+        First name: <input type="text" name="fname"><br>
+        Last name: <input type="text" name="lname"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <form id="tableForm">
+        Filas <input type="number" id="rows">
+        Columnas <input type="number" id="columns"><br>
+        <input type="button" value="Generar tabla" onclick="generateTable()">
+
+    </form>
+    <br>
+    <table border="1" id="table">
+
+    </table>
 
     <script src="main.js"></script>
 </body>
+
 </html>
