@@ -1,0 +1,17 @@
+<p>car-list works!</p>
+<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Select</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of carList">
+            <td>{{car.name}}</td>
+            <td>{{car.price}}</td>
+            <td><button type="button" class="btn btn-success" (click)="selectCar(car)">Select</button></td>
+          </tr>
+        </tbody>
+      </table>
