@@ -1,0 +1,12 @@
+
+<h1 class="my-4">Carrito de compras</h1>
+<ul class="list-group" id="cart">
+    <li class="list-group-item" style="background-color: #18b639; color: white;"> Cart</li>
+    <li class="list-group-item" *ngFor="let productLine of cartList">
+        <strong class="product-name">{{productLine.product.name}}</strong>
+        <p id="quantity-n">{{productLine.quantity}}</p>
+    </li>
+</ul>
+<ul class="list-group">
+    <li class="list-group-item"><button class="btn btn-success">Checkout</button></li>
+</ul>
