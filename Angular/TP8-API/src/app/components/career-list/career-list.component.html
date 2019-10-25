@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Carreras:</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let career of careerList">
+              <th scope="row">{{career.id}} id</th>
+              <td>{{career.description}}Allan Maduro</td>
+              <td>{{career.name}}Villar 124</td>
+            </tr>
+          </tbody>
+        </table>
+</div>

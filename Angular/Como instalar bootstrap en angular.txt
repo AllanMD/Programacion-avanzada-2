@@ -1,0 +1,5 @@
+1- instalar bootstrap, jquery y popper.js con el comando : npm install bootstrap jquery popper.js
+2- en el archivo "angular.json" agregar a "styles" : "node_modules/bootstrap/dist/css/bootstrap.min.css", y en "scripts":
+"node_modules/jquery/dist/jquery.js",
+"node_modules/popper.js/dist/umd/popper.js",
+"node_modules/bootstrap/dist/js/bootstrap.js"
