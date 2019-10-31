@@ -8,16 +8,18 @@
       <th scope="col">DNI</th>
       <th scope="col">Email</th>
       <th scope="col">Carrera</th>
+      <th scope="col">Eliminar</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th><!--con th sale en negrita-->
-      <td>Allan Maduro</td>
-      <td>Villar 124</td>
-      <td>1246432</td>
-      <td>asfd@adsf</td>
-      <td>programacion</td>
+    <tr *ngFor="let student of studentList">
+      <th scope="row">{{student.studentId}}</th><!--con th sale en negrita-->
+      <td>{{student.firstName}} {{student.lastName}}</td>
+      <td>{{student.address}}</td>
+      <td>{{student.dni}}</td>
+      <td>{{student.email}}</td>
+      <td>{{student.careerId}}</td> <!--getCareerById(student.careerId) no se puede hacer porq entra en un loop infinito-->
+      <td><button type="button" class="btn btn-danger" (click)="deleteStudent(student.studentId)">Borrar</button></td>
     </tr>
   </tbody>
 </table>

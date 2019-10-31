@@ -9,7 +9,7 @@ import { CareerListComponent } from './components/career-list/career-list.compon
 const routes: Routes = [
   {path: 'students', component : StudentAddComponent},
   {path: 'careers', component : CareerListComponent},
-  {path: '', redirectTo: '/student', pathMatch: 'full'},
+  {path: '', redirectTo: '/students', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
 

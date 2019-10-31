@@ -1,5 +1,5 @@
 export class Career {
-    id : number;
+    careerId : number;
     description : string;
     name : string;
 }

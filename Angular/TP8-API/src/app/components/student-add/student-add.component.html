@@ -1,3 +1,67 @@
+<!--CON REACTIVE FORMS-->
+<div class="container">
+    <h2>Agregar Estudiante</h2><br>
+    <form [formGroup]="studentForm" (ngSubmit)="addStudent()">
+        <div class="form-group">
+            <label for="address">Direccion</label>
+            <input type="text" formControlName="address" class="form-control" id="address" placeholder="Direccion"
+                name="address">
+        </div>
+        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+            <div *ngIf="firstName.errors.required">
+                Debe ingresar una direccion
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dni">DNI</label>
+            <input type="number" formControlName="dni" class="form-control" id="dni" placeholder="dni" name="dni">
+        </div>
+        <div class="form-group">
+            <label for="email">email</label>
+            <input type="email" formControlName="email" class="form-control" id="email" placeholder="email"
+                name="email">
+        </div>
+        <div class="form-group">
+            <label for="f_name">Nombre</label>
+            <input type="text" formControlName="firstName" class="form-control" id="f_name" placeholder="Nombre"
+                name="f_name">
+        </div>
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+            <div *ngIf="firstName.errors.minlength">
+                Nombre debe ser mayor a 20 caracteres
+            </div>
+            <div *ngIf="firstName.errors.required">
+                Debe ingresar un nombre
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="l_name">Apellido</label>
+            <input type="text" formControlName="lastName" class="form-control" id="l_name" placeholder="Apellido"
+                name="l_name">
+        </div>
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+            <div *ngIf="lastName.errors.required">
+                Debe ingresar un apellido
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="careerId">Carrera</label>
+            <select formControlName="careerId" class="form-control" name="careerId">
+                <option value="{{career.careerId}}" *ngFor="let career of careerList">{{career.name}}</option>
+            </select>
+        </div>
+        <div *ngIf="careerId.invalid && (careerId.dirty || careerId.touched)" class="alert alert-danger">
+            <div *ngIf="careerId.errors.required">
+                Debe seleccionar una carrera
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!studentForm.valid">Agregar</button>
+    </form>
+    <app-student-list></app-student-list>
+</div>
+
+<!--SIN REACTIVE FORMS-->
+<!--
 <div class="container">
     <h2>Agregar Estudiante</h2><br>
     <form>
@@ -25,14 +89,14 @@
         </div>
         <div class="form-group">
             <label for="stock">Carrera</label>
-            <select class="form-control" name="career">
-                <option value="id1">Carrera</option>
+            <select class="form-control" name="careerId" [(ngModel)]="careerId">
+                <option value="{{career.careerId}}" *ngFor="let career of careerList">{{career.name}}</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary" (click)="addStudent()">Agregar</button>
+        <button type="button" class="btn btn-primary" (click)="addStudent()">Agregar</button>
     </form>
     <app-student-list></app-student-list>
 </div>
-
+-->
 <!-- para usar el ngModel hay que importar { FormsModule } from '@angular/forms'; y agregarlo tambien en el imports en app.module.ts-->
 <!-- cada ngModel debe ir acompañado de un name="" en la etiqueta-->
