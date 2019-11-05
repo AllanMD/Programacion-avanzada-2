@@ -1,0 +1,26 @@
+<br>
+<table class="table" *ngIf="student">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Email</th>
+            <th scope="col">Carrera</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{student.studentId}}</th>
+            <!--con th sale en negrita-->
+            <td>{{student.firstName}} {{student.lastName}}</td>
+            <td>{{student.address}}</td>
+            <td>{{student.dni}}</td>
+            <td>{{student.email}}</td>
+            <td *ngIf="career">{{career.name}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 *ngIf="!student">Estudiante con ese ID no existe!!</h4>

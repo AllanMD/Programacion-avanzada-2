@@ -12,9 +12,9 @@ export class CareerListComponent implements OnInit {
   constructor(private careerService : CareerService) { }
 
   ngOnInit() {
-    this.careerService.getAll().then(response =>{
+    this.careerService.getAll().subscribe(response =>{
       this.careerList = response;
-    }).catch(error =>{
+    },error =>{
       console.log(error);
     })
   }

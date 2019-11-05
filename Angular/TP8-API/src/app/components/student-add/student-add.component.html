@@ -16,10 +16,26 @@
             <label for="dni">DNI</label>
             <input type="number" formControlName="dni" class="form-control" id="dni" placeholder="dni" name="dni">
         </div>
+        <div *ngIf="dni.invalid && (dni.dirty || dni.touched)" class="alert alert-danger">
+            <div *ngIf="dni.errors.dniExists">
+                El dni ya existe
+            </div>
+            <div *ngIf="dni.errors.required">
+                Debe ingresar un dni
+            </div>
+        </div>
         <div class="form-group">
             <label for="email">email</label>
             <input type="email" formControlName="email" class="form-control" id="email" placeholder="email"
                 name="email">
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+            <div *ngIf="email.errors.emailExists">
+                El email ya existe
+            </div>
+            <div *ngIf="email.errors.required">
+                Debe ingresar un email
+            </div>
         </div>
         <div class="form-group">
             <label for="f_name">Nombre</label>
@@ -28,7 +44,7 @@
         </div>
         <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
             <div *ngIf="firstName.errors.minlength">
-                Nombre debe ser mayor a 20 caracteres
+                Nombre debe ser mayor a 5 caracteres
             </div>
             <div *ngIf="firstName.errors.required">
                 Debe ingresar un nombre

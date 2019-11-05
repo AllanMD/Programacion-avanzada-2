@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // para hacer llamadas http
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,17 @@ export class CareerService {
 
   constructor(private http : HttpClient) { }
 
+  // CON OBSERVABLES
+  getAll() : Observable<any>{
+    //retornar todos
+    return this.http.get(this.url +"api/careers");
+  }
+
+  getById(id) : Observable<any>{
+    return this.http.get(this.url +"api/careers/"+id);
+  }
+
+  /* CON PROMISE
   getAll() : Promise<any>{
     //retornar todos
     return this.http.get(this.url +"api/careers").toPromise();
@@ -18,15 +30,7 @@ export class CareerService {
   getById(id) : Promise<any>{
     return this.http.get(this.url +"api/careers/"+id).toPromise();
   }
-
-   /* de ejemplo
-  sendRequest(file : ImageSend) : Promise<any>{
-    const httpOptions = {
-      headers : new HttpHeaders({
-        'Content-Type' : 'application/json'
-      })
-    };
-    return this.http.post(this.url, file, httpOptions).toPromise();
-  }
   */
+
+
 }

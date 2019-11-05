@@ -18,30 +18,40 @@ export class StudentListComponent implements OnInit {
   constructor(private studentService: StudentService, private careerService: CareerService) { }
 
   ngOnInit() {
+    // CON OBSERVABLE
+    this.studentService.getAll().subscribe(
+      response => {
+        this.studentList = response;
+      },
+      error => {
+        console.log(error);
+      })
+
+    /* CON PROMISES: 
     this.studentService.getAll().then(response => {
       this.studentList = response;
     }).catch(error => {
       console.log(error);
-    })
+    }) */
   }
 
   deleteStudent(id){
-    this.studentService.deleteById(id).then(response => {
+    this.studentService.deleteById(id).subscribe(response => {
       console.log(response);
       alert("estudiante eliminado!");
       window.location.reload(); // para recargar la pagina despues de borrar, para actualizar la lista
-    }).catch(error => {
+    },error => {
       console.log(error);
     })
   }
 
   getCareerById(id) { // preguntar al profe por esto
     if (id != null) {
-      this.careerService.getById(id).then(response => {
+      this.careerService.getById(id).subscribe(response => {
         let career = response.name;
         console.log(career);
         return career;
-      }).catch(error => {
+      }, error => {
         console.log(error);
       })
     }else{
