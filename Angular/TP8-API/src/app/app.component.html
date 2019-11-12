@@ -8,25 +8,33 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
+        <li class="nav-item active" *ngIf="logged">
           <a class="nav-link" [routerLink]="['/students']" href="#">Estudiantes
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" *ngIf="logged">
           <a class="nav-link" [routerLink]="['/careers']" href="#">Carreras
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" *ngIf="!logged">
           <a class="nav-link" [routerLink]="['/login']" href="#">Login
             <span class="sr-only">(current)</span>
           </a>
+          <!--sacar una vez logueado-->
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" *ngIf="!logged">
           <a class="nav-link" [routerLink]="['/sign-up']" href="#">Sign-Up
             <span class="sr-only">(current)</span>
           </a>
+          <!--sacar una vez logueado-->
+        </li>
+        <li class="nav-item active" *ngIf="logged">  
+          <a class="nav-link" (click)="logout()" href="#">Logout
+            <span class="sr-only">(current)</span>
+          </a>
+          <!--poner una vez logueado-->
         </li>
       </ul>
     </div>
