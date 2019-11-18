@@ -9,6 +9,7 @@
       <th scope="col">Email</th>
       <th scope="col">Carrera</th>
       <th scope="col">Eliminar</th>
+      <th scope="col">Modificar</th>
     </tr>
   </thead>
   <tbody>
@@ -18,8 +19,9 @@
       <td [routerLink]="['/student/view', student.studentId]">{{student.address}}</td>
       <td>{{student.dni}}</td>
       <td>{{student.email}}</td>
-      <td>{{student.careerId}}</td> <!--getCareerById(student.careerId) no se puede hacer porq entra en un loop infinito-->
+      <td>{{student.careerName}}</td> <!--getCareerById(student.careerId) no se puede hacer porq entra en un loop infinito-->
       <td><button type="button" class="btn btn-danger" (click)="deleteStudent(student.studentId)">Borrar</button></td>
+      <td><button type="button" class="btn btn-primary" [routerLink]="['/modify', student.studentId]">Modificar</button></td>
     </tr>
   </tbody>
 </table>

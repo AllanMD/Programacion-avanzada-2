@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // para usar ngModel y reactive forms
-import { HttpClientModule }    from '@angular/common/http'; // para hacer peticiones http
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // para hacer peticiones http
 // todo lo q se agrega aca, hay que agregarlo al imports de abajo
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { StudentViewComponent } from './components/student-view/student-view.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { StudentModifyComponent } from './components/student-modify/student-modify.component';
 
 @NgModule({
   declarations: [
@@ -23,16 +25,21 @@ import { StudentViewComponent } from './components/student-view/student-view.com
     PageNotFoundComponent,
     LoginComponent,
     SignUpComponent,
-    StudentViewComponent
+    StudentViewComponent,
+    StudentModifyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule, 
+    HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

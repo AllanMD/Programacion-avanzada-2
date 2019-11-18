@@ -6,6 +6,8 @@ export class Student {
     firstName : string;
     lastName : string;
     studentId : number;
+
+    careerName : string; // agregado para poder mostrar el nombre de la carrera
     
 }
 

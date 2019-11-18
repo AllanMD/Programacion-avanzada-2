@@ -13,7 +13,7 @@ export class StudentListComponent implements OnInit {
 
   studentList: Array<Student>;
   careerList: Array<Career> = new Array<Career>(); // funciona de ambas formas
-  career : String; 
+  career: String;
 
   constructor(private studentService: StudentService, private careerService: CareerService) { }
 
@@ -22,6 +22,15 @@ export class StudentListComponent implements OnInit {
     this.studentService.getAll().subscribe(
       response => {
         this.studentList = response;
+        this.studentList.forEach(element => { // para agregar el nombre de la carrera a cada estudiante
+          if (element.careerId) {
+            this.careerService.getById(element.careerId).subscribe(response => {
+              element.careerName = response.name;
+            }, error => {
+              console.log(error);
+            })
+          }
+        });
       },
       error => {
         console.log(error);
@@ -35,12 +44,12 @@ export class StudentListComponent implements OnInit {
     }) */
   }
 
-  deleteStudent(id){
+  deleteStudent(id) {
     this.studentService.deleteById(id).subscribe(response => {
       console.log(response);
       alert("estudiante eliminado!");
       window.location.reload(); // para recargar la pagina despues de borrar, para actualizar la lista
-    },error => {
+    }, error => {
       console.log(error);
     })
   }
@@ -54,7 +63,7 @@ export class StudentListComponent implements OnInit {
       }, error => {
         console.log(error);
       })
-    }else{
+    } else {
       return "Sin carrera";
     }
 
