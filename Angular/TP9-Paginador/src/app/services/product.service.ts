@@ -11,6 +11,10 @@ export class ProductService {
   constructor(private http : HttpClient) { }
 
   getAll() : Observable<any>{
-    return this.http.get(this.url +"api/products");
+    return this.http.get(this.url +"api/products?page=0&size=10");
+  }
+
+  getByPageAndSize(page : number, size : number) : Observable<any>{
+    return this.http.get(this.url +"api/products?page="+page+"+&size="+size);
   }
 }

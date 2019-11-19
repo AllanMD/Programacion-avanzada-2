@@ -31,9 +31,10 @@ export class LoginComponent implements OnInit {
     user.email = this.email.value;
     user.password = this.password.value;
 
+    console.log("hola");
     this.userService.login(user).subscribe(response => {
       if (this.userService.token) {
-        let redirect = this.userService.redirectUrl ? this.router.parseUrl(this.userService.redirectUrl) : '/students';
+        let redirect = this.userService.redirectUrl ? this.router.parseUrl(this.userService.redirectUrl) : '/products';
 
         this.router.navigateByUrl(redirect);
 
